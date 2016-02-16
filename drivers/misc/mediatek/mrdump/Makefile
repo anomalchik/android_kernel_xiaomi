@@ -1,0 +1,6 @@
+obj-$(CONFIG_ARCH_MT8127) += v1/
+obj-$(CONFIG_ARCH_MT6572) += v1/
+obj-$(CONFIG_ARCH_MT6582) += v1/
+obj-$(CONFIG_ARCH_MT6592) += v1/
+obj-$(CONFIG_ARCH_MT6752) += v1/
+obj-$(CONFIG_ARCH_MT6795) += v1/
