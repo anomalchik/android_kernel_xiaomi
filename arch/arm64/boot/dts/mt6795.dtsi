@@ -1521,23 +1521,7 @@
 		orientation@0 {
 			compatible = "mediatek,orientation";
 	};
-/* Vanzo:wuzhiyong on: Fri, 06 Mar 2015 21:25:43 +0800
- * add hall devicetree remoteir
- */
-        hall_driver@0 {
-            compatible = "mediatek,hall_driver";
-       };
-        remoteplatformdev@0 {
-            compatible = "mediatek,remoteplatformdev";
-       };
-//End of vanzo:wuzhiyong
-/* Vanzo:dingge on: Thu, 02 Apr 2015 15:04:57 +0800
- * add breathlight
- */
-        breathlight@0 {
-            compatible = "mediatek,breathlight";
-       };
-// End of Vanzo: dingge
 
 /* sensor end */
 };
+
