@@ -114,7 +114,7 @@ static LCM_UTIL_FUNCS lcm_util = {0};
 #define read_reg_v2(cmd, buffer, buffer_size)							lcm_util.dsi_dcs_read_lcm_reg_v2(cmd, buffer, buffer_size)    
 
 //#ifndef BUILD_LK
-#if 0
+/*
 #include <linux/kernel.h>
 #include <linux/module.h>  
 #include <linux/fs.h>
@@ -248,8 +248,7 @@ MODULE_AUTHOR("Xiaokuan Shi");
 MODULE_DESCRIPTION("MTK TPS65132 I2C Driver");
 MODULE_LICENSE("GPL"); 
 
-#endif
-
+*/
 struct LCM_setting_table {
     unsigned cmd;
     unsigned char count;
@@ -321,9 +320,6 @@ static struct LCM_setting_table lcm_sleep_mode_in_setting[] = {
 	{REGFLAG_DELAY, 78, {}},
 	{0x29,0,{0x00}},
 	{REGFLAG_DELAY, 14, {}},
-	{0x51,1,{0xFF}},
-	{0x53,1,{0x24}},
-	{0x55,1,{0x01}},
 	{REGFLAG_END_OF_TABLE, 0x00, {}},	
 	
 */

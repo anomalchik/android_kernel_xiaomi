@@ -249,7 +249,6 @@ MODULE_DESCRIPTION("MTK TPS65132 I2C Driver");
 MODULE_LICENSE("GPL"); 
 
 #endif
-
 struct LCM_setting_table {
     unsigned cmd;
     unsigned char count;
