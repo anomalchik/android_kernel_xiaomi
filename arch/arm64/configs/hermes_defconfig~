@@ -290,8 +290,8 @@ CONFIG_CROSS_MEMORY_ATTACH=y
 #
 # Boot options
 #
-CONFIG_CMDLINE="console=tty0 console=ttyMT3,921600n1 root=/dev/ram vmalloc=496M slub_max_order=0 slub_debug=O androidboot.hardware=mt6795 androidboot.selinux=permissive"
-CONFIG_CMDLINE_FROM_BOOTLOADER is not set
+CONFIG_CMDLINE="console=tty0 console=ttyMT3,921600n1 root=/dev/ram vmalloc=496M slub_max_order=0 slub_debug=O androidboot.selinux=permissive"
+CONFIG_CMDLINE_FROM_BOOTLOADER=y
 # CONFIG_CMDLINE_EXTEND is not set
 # CONFIG_CMDLINE_FORCE is not set
 CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
@@ -1287,10 +1287,10 @@ CONFIG_MTK_SWCHR_SUPPORT=y
 CONFIG_MTK_KERNEL_POWER_OFF_CHARGING=y
 # CONFIG_MTK_BQ24160_SUPPORT is not set
 # CONFIG_MTK_MT8193_SUPPORT is not set
-CONFIG_MTK_HDMI_SUPPORT=y
+# CONFIG_MTK_HDMI_SUPPORT is not set
 # CONFIG_MTK_INTERNAL_HDMI_SUPPORT is not set
 # CONFIG_MTK_MT8193_HDCP_SUPPORT is not set
-CONFIG_CUSTOM_KERNEL_HDMI="Sii8348"
+# CONFIG_CUSTOM_KERNEL_HDMI="Sii8348" ///yup
 # CONFIG_SINGLE_PANEL_OUTPUT is not set
 # CONFIG_MTK_INTERNAL_MHL_SUPPORT is not set
 CONFIG_MTK_THERMAL_PA_VIA_ATCMD=y

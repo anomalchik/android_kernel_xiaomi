@@ -262,9 +262,9 @@ static struct LCM_setting_table lcm_initialization_setting[] = {
 	{0xFF,1,{0xEE}},
 	{0xFB,1,{0x01}},
 	{0x18,1,{0x40}},
-	{REGFLAG_DELAY, 14, {}},
+	{REGFLAG_DELAY, 20, {}},
 	{0x18,1,{0x00}},
-	{REGFLAG_DELAY, 14, {}},
+	{REGFLAG_DELAY, 20, {}},
 	{0x7C,1,{0x31}},
 	{0xFF,1,{0x05}},
 	{0xFB,1,{0x01}},
@@ -275,10 +275,10 @@ static struct LCM_setting_table lcm_initialization_setting[] = {
 	{0xFB,1,{0x01}},
 	{0xD3,1,{0x06}},
 	{0xD4,1,{0x04}},
-	{0x11,0,{0x00}},
-	{REGFLAG_DELAY, 78, {}},
-	{0x29,0,{0x00}},
-	{REGFLAG_DELAY, 14, {}},
+	{0x11,0,{}},
+	{REGFLAG_DELAY, 120, {}},
+	{0x29,0,{}},
+	{REGFLAG_DELAY, 20, {}},
 	{0x51,1,{0xFF}},
 	{0x53,1,{0x24}},
 	{0x55,1,{0x01}},
@@ -288,24 +288,14 @@ static struct LCM_setting_table lcm_initialization_setting[] = {
 };
 
 
-static struct LCM_setting_table lcm_sleep_mode_in_setting[] = {
-	{0xFF, 1, {0x01}},
-	{0xFB, 1, {0x01}},	
-	{REGFLAG_DELAY, 10, {}},	
-	{0x11, 1, {0x78}},
-    {0x12, 1, {0x78}},
-    {0x13, 1, {0x00}},
-	{REGFLAG_DELAY, 10, {}},	
-	{0x11, 1, {0x78}},
-    {0x12, 1, {0x78}},
-    {0x13, 1, {0x00}},	
-/*	
+static struct LCM_setting_table lcm_sleep_mode_in_setting[] = {	
+	
 	{0xFF,1,{0xEE}},
 	{0xFB,1,{0x01}},
 	{0x18,1,{0x40}},
-	{REGFLAG_DELAY, 14, {}},
+	{REGFLAG_DELAY, 20, {}},
 	{0x18,1,{0x00}},
-	{REGFLAG_DELAY, 14, {}},
+	{REGFLAG_DELAY, 20, {}},
 	{0x7C,1,{0x31}},
 	{0xFF,1,{0x05}},
 	{0xFB,1,{0x01}},
@@ -316,39 +306,17 @@ static struct LCM_setting_table lcm_sleep_mode_in_setting[] = {
 	{0xFB,1,{0x01}},
 	{0xD3,1,{0x06}},
 	{0xD4,1,{0x04}},
-	{0x11,0,{0x00}},
-	{REGFLAG_DELAY, 78, {}},
-	{0x29,0,{0x00}},
-	{REGFLAG_DELAY, 14, {}},
-	{REGFLAG_END_OF_TABLE, 0x00, {}},	
-	
-*/
-	{REGFLAG_DELAY, 200, {}},
-	
-	{0xFF, 1, {0x00}},
-	{0xFB, 1, {0x01}},
-	// Display off sequence
-	{0x28, 1, {0x00}},
-	{REGFLAG_DELAY, 200, {}},
-
-	// Sleep Mode On
-	{0x10, 1, {0x00}},
+	{0x11,0,{}},
 	{REGFLAG_DELAY, 120, {}},
-	{REGFLAG_END_OF_TABLE, 0x00, {}}
+	{0x29,0,{}},
+	{REGFLAG_DELAY, 20, {}},
+	{REGFLAG_END_OF_TABLE, 0x00, {}},	
 };
 static struct LCM_setting_table lcm_sleep_out_setting[] = {
 	// Sleep Out
-/*
+	{0x28,0,{}},
 	{REGFLAG_DELAY, 20, {}},
-	{0x10, 1, {0x00}},
-	{REGFLAG_DELAY, 78, {}},
-	{REGFLAG_END_OF_TABLE, 0x00, {}}
-*/
-	{0x11, 1, {0x00}},
-	{REGFLAG_DELAY, 20, {}},
-
-	// Display ON
-	{0x29, 1, {0x00}},
+	{0x10, 0, {}},
 	{REGFLAG_DELAY, 120, {}},
 	{REGFLAG_END_OF_TABLE, 0x00, {}}
 };
@@ -362,10 +330,7 @@ static struct LCM_setting_table lcm_compare_id_setting[] = {
 
 static struct LCM_setting_table page1_select[] = {
 	//CMD_Page 1
-	{0xFF, 3,{0x98,0x81,0x01}},
-	/*
-	{0x51, 2,{0xFF,0x00,0x00}},
-*/
+	{0x51, 2,{0xFF}},
 	{REGFLAG_END_OF_TABLE, 0x00, {}}
 };
 
@@ -398,7 +363,7 @@ static void push_table(struct LCM_setting_table *table, unsigned int count, unsi
 
 static void init_lcm_registers(void)
 {
-	unsigned int data_array[16];
+	unsigned int data_array[1];
 }
 // ---------------------------------------------------------------------------
 //  LCM Driver Implementations
@@ -494,17 +459,17 @@ static void lcm_init(void)
 
 	ret=tps65132_write_bytes(cmd,data);
 	if(ret<0)
-	printk("[KERNEL]nt35596----tps6132---cmd=%0x-- i2c write error-----\n",cmd);
+	printk("[KERNEL]nt35596----tps65132---cmd=%0x-- i2c write error-----\n",cmd);
 	else
-	printk("[KERNEL]nt35596----tps6132---cmd=%0x-- i2c write success-----\n",cmd);
+	printk("[KERNEL]nt35596----tps65132---cmd=%0x-- i2c write success-----\n",cmd);
 
 	cmd=0x01;
 	data=0x0E;
 	ret=tps65132_write_bytes(cmd,data);
 	if(ret<0)
-	printk("[KERNEL]nt35596----tps6132---cmd=%0x-- i2c write error-----\n",cmd);
+	printk("[KERNEL]nt35596----tps65132---cmd=%0x-- i2c write error-----\n",cmd);
 	else
-	printk("[KERNEL]nt35596----tps6132---cmd=%0x-- i2c write success-----\n",cmd);
+	printk("[KERNEL]nt35596----tps65132---cmd=%0x-- i2c write success-----\n",cmd);
 
 	SET_RESET_PIN(1);
 	MDELAY(1);
@@ -521,60 +486,11 @@ static void lcm_init(void)
 
 static void lcm_suspend(void)
 {
-	unsigned int data_array[16];
-//	{0xFF, 1, {0x01}},
-//	{0xFB, 1, {0x01}},	
-//	{REGFLAG_DELAY, 10, {}},	
-//	{0x11, 1, {0x78}},
-//    {0x12, 1, {0x78}},
-//    {0x13, 1, {0x00}},
-//	{REGFLAG_DELAY, 10, {}},	
-//	{0x11, 1, {0x78}},
- //   {0x12, 1, {0x78}},
- //   {0x13, 1, {0x00}},	
-//	{REGFLAG_DELAY, 200, {}},
-
-
-	data_array[0]=0x00023902; 
-	data_array[1]=0x000001FF;
-	dsi_set_cmdq(data_array, 2, 1);
-	
-	data_array[0]=0x00023902; 
-	data_array[1]=0x000001FB;
-	dsi_set_cmdq(data_array, 2, 1);
-	MDELAY(10);
-	
-	data_array[0]=0x00023902; 
-	data_array[1]=0x00007811;
-	dsi_set_cmdq(data_array, 2, 1);
-	data_array[0]=0x00023902; 
-	data_array[1]=0x00007812;
-	dsi_set_cmdq(data_array, 2, 1);	
-	data_array[0]=0x00023902; 
-	data_array[1]=0x00000013;
-	dsi_set_cmdq(data_array, 2, 1);
-	MDELAY(10);
-	
-	data_array[0]=0x00023902; 
-	data_array[1]=0x00007811;
-	dsi_set_cmdq(data_array, 2, 1);
-	data_array[0]=0x00023902; 
-	data_array[1]=0x00007812;
-	dsi_set_cmdq(data_array, 2, 1);	
-	data_array[0]=0x00023902; 
-	data_array[1]=0x00000013;
-	dsi_set_cmdq(data_array, 2, 1);
-	MDELAY(200);
-
-	data_array[0]=0x00280500; // Display Off
-	dsi_set_cmdq(data_array, 1, 1);
-	
-	data_array[0] = 0x00100500; // Sleep In
-	dsi_set_cmdq(data_array, 1, 1);
-
 	mt_set_gpio_mode(GPIO_LCD_BIAS_ENP_PIN, GPIO_MODE_00);
 	mt_set_gpio_dir(GPIO_LCD_BIAS_ENP_PIN, GPIO_DIR_OUT);
 	mt_set_gpio_out(GPIO_LCD_BIAS_ENP_PIN, GPIO_OUT_ZERO);
+	
+	//push_table(lcm_suspend_setting, sizeof(lcm_suspend_setting) / sizeof(struct LCM_setting_table), 1);  
 		
 	SET_RESET_PIN(0);
 	MDELAY(120); // 1ms
@@ -642,17 +558,17 @@ static unsigned int lcm_compare_id(void)
 
 	ret=tps65132_write_bytes(cmd,data);
 	if(ret<0)
-	printk("[KERNEL]nt35596----tps6132---cmd=%0x-- i2c write error-----\n",cmd);
+	printk("[KERNEL]nt35596----tps65132---cmd=%0x-- i2c write error-----\n",cmd);
 	else
-	printk("[KERNEL]nt35596----tps6132---cmd=%0x-- i2c write success-----\n",cmd);
+	printk("[KERNEL]nt35596----tps65132---cmd=%0x-- i2c write success-----\n",cmd);
 
 	cmd=0x01;
 	data=0x0E;
 	ret=tps65132_write_bytes(cmd,data);
 	if(ret<0)
-	printk("[KERNEL]nt35596----tps6132---cmd=%0x-- i2c write error-----\n",cmd);
+	printk("[KERNEL]nt35596----tps65132---cmd=%0x-- i2c write error-----\n",cmd);
 	else
-	printk("[KERNEL]nt35596----tps6132---cmd=%0x-- i2c write success-----\n",cmd); 
+	printk("[KERNEL]nt35596----tps65132---cmd=%0x-- i2c write success-----\n",cmd); 
 
 	SET_RESET_PIN(1);	//NOTE:should reset LCM firstly
 	MDELAY(10);
