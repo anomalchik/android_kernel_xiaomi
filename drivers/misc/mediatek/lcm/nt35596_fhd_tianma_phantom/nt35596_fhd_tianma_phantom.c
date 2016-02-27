@@ -113,8 +113,8 @@ static LCM_UTIL_FUNCS lcm_util = {0};
 #define read_reg(cmd)												lcm_util.dsi_dcs_read_lcm_reg(cmd)
 #define read_reg_v2(cmd, buffer, buffer_size)							lcm_util.dsi_dcs_read_lcm_reg_v2(cmd, buffer, buffer_size)    
 
-//#ifndef BUILD_LK
-#if 0
+/* TPS START */
+
 #include <linux/kernel.h>
 #include <linux/module.h>  
 #include <linux/fs.h>
@@ -204,7 +204,7 @@ static int tps65132_remove(struct i2c_client *client)
 }
 
 
- static int tps65132_write_bytes(unsigned char addr, unsigned char value)
+int tps65132_write_bytes(unsigned char addr, unsigned char value)
 {	
 	int ret = 0;
 	struct i2c_client *client = tps65132_i2c_client;
@@ -218,7 +218,6 @@ static int tps65132_remove(struct i2c_client *client)
 }
 
 
-
 /*
  * module load/unload record keeping
  */
@@ -226,7 +225,7 @@ static int tps65132_remove(struct i2c_client *client)
 static int __init tps65132_iic_init(void)
 {
 
-   printk( "tps65132_iic_init\n");
+   printk( "tps65132_iic_init 11111\n");
    i2c_register_board_info(TPS_I2C_BUSNUM, &tps65132_board_info, 1);
    printk( "tps65132_iic_init2\n");
    i2c_add_driver(&tps65132_iic_driver);
@@ -247,8 +246,8 @@ module_exit(tps65132_iic_exit);
 MODULE_AUTHOR("Xiaokuan Shi");
 MODULE_DESCRIPTION("MTK TPS65132 I2C Driver");
 MODULE_LICENSE("GPL"); 
+/* TPS END */
 
-#endif
 struct LCM_setting_table {
     unsigned cmd;
     unsigned char count;
@@ -282,11 +281,15 @@ static struct LCM_setting_table lcm_initialization_setting[] = {
 	{0x51,1,{0xFF}},
 	{0x53,1,{0x24}},
 	{0x55,1,{0x01}},
-	{REGFLAG_END_OF_TABLE, 0x00, {}},	
+	{REGFLAG_END_OF_TABLE, 0x00, {}}	
 	
 	
 };
 
+static struct LCM_setting_table lcm_suspend_setting[] = {
+	{0x51, 2, {0xFF}},
+	{REGFLAG_END_OF_TABLE, 0x00, {}}
+};
 
 static struct LCM_setting_table lcm_sleep_mode_in_setting[] = {	
 	
@@ -310,7 +313,7 @@ static struct LCM_setting_table lcm_sleep_mode_in_setting[] = {
 	{REGFLAG_DELAY, 120, {}},
 	{0x29,0,{}},
 	{REGFLAG_DELAY, 20, {}},
-	{REGFLAG_END_OF_TABLE, 0x00, {}},	
+	{REGFLAG_END_OF_TABLE, 0x00, {}}	
 };
 static struct LCM_setting_table lcm_sleep_out_setting[] = {
 	// Sleep Out
@@ -328,10 +331,15 @@ static struct LCM_setting_table lcm_compare_id_setting[] = {
 	{REGFLAG_END_OF_TABLE, 0x00, {}}
 };
 
-static struct LCM_setting_table page1_select[] = {
+/*static struct LCM_setting_table page1_select[] = {
 	//CMD_Page 1
 	{0x51, 2,{0xFF}},
 	{REGFLAG_END_OF_TABLE, 0x00, {}}
+};*/
+
+static struct LCM_setting_table lcm_backlight_level_setting[] = {
+{0x51, 2, {0xFF}},
+{REGFLAG_END_OF_TABLE, 0x00, {}}
 };
 
 static void push_table(struct LCM_setting_table *table, unsigned int count, unsigned char force_update)
