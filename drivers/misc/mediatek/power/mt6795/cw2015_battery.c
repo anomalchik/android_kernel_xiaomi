@@ -105,8 +105,9 @@ static struct i2c_driver FG_CW2015_i2c_driver;
 
 int g_cw2015_capacity = 0;
 int g_cw2015_vol = 0;
-extern int FG_charging_type ;
-extern int FG_charging_status ;
+extern int FG_charging_type;
+//extern int FG_charging_type = *(CHARGER_TYPE*)(data);
+extern int FG_charging_status;
 /*
 extern int dwc_otg_check_dpdm(void);
 extern int get_gadget_connect_flag(void);
@@ -1176,7 +1177,7 @@ static int get_usb_charge_state(struct cw_battery *cw_bat)
 	 }
 	 else
 	 {
-	 	if(FG_charging_type==STANDARD_HOST)
+	 	if(FG_charging_type == STANDARD_HOST)
  	 	{
 	 		usb_status = 1;
 			cw_bat->charger_mode = USB_CHARGER_MODE;
