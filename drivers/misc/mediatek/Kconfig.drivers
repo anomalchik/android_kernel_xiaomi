@@ -902,6 +902,11 @@ config MTK_BQ27541_SUPPORT
 	help
 	  yes : support TI bq27541 external gauge IC
 
+config RGK_DRIVER_FG_CW2015
+        bool "RGK for cw2015 charger ic"
+	help
+	  Support RGK for cw2015 charger ic
+
 config MTK_NCP1851_SUPPORT
 	bool "MTK_NCP1851_SUPPORT"
 	help

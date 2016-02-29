@@ -36,6 +36,7 @@
 #include <linux/sensors_io.h>
 #include <asm/io.h>
 #include <cust_eint.h>
+#include <cust_gpio_usage.h>
 #include <cust_alsps.h>
 #include "cm36652.h"
 #include <linux/sched.h>

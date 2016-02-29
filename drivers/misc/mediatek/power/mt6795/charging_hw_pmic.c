@@ -634,7 +634,11 @@ static kal_uint32 charging_get_charger_type(void *data)
 #if defined(CONFIG_POWER_EXT) || defined(CONFIG_MTK_FPGA)
     *(CHARGER_TYPE*)(data) = STANDARD_HOST;
 #else
-    *(CHARGER_TYPE*)(data) = STANDARD_HOST;
+// Xiaomi Redmi Note 2 CW2015 wihout Wireless Charger
+	*(CHARGER_TYPE*)(data) = hw_charging_get_charger_type();
+#if defined(CONFIG_RGK_DRIVER_FG_CW2015)	 
+	FG_charging_type = *(CHARGER_TYPE*)(data);
+#endif
 #endif
 
      return status;
