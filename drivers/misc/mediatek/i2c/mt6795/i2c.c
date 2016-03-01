@@ -1656,6 +1656,7 @@ static const struct of_device_id mt_i2c_of_match[] = {
 	{ .compatible = "mediatek,I2C1", },
 	{ .compatible = "mediatek,I2C2", },
 	{ .compatible = "mediatek,I2C3", },
+	{ .compatible = "mediatek,I2C4", },
 	{/* sentinel */},
 };
 
