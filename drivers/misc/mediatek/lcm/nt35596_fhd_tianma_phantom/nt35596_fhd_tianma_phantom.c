@@ -479,7 +479,7 @@ void lcm_setbacklight_cmdq(void* handle, unsigned int level)
 				}else{
 					if (tianma_first_vlue >= 31){
 						if (tianma_second_vlue >= 31){
-							mt_set_gpio_out(0x87, 1);
+						mt_set_gpio_out(GPIO_MHL_POWER_CTRL_PIN, GPIO_OUT_ONE);
 						}else{
 							KTD3116_Tianma_SendData(0);
 						}
