@@ -235,8 +235,8 @@ static void tps65132_enable(bool enable){
 		MDELAY(12);
 		mt_set_gpio_out(GPIO_MHL_RST_B_PIN, GPIO_OUT_ONE);
 		MDELAY(12);
-
-		for (int i = 0; i < 3; i++){
+		int i=0;
+		for (i; i < 3; i++){
 			if ((tps65132_write_bytes(0, 0xF) & 0x1f)==0) break;
 			MDELAY(5);
 		}
@@ -250,13 +250,13 @@ static void tps65132_enable(bool enable){
 	
 }
 
-#ifdef BUILD_LK
+#ifndef BUILD_LK
 static void KTD3116_Tianma_SendData(unsigned char value){
 	raw_spin_lock_irq(&tianma_SpinLock);
 	mt_set_gpio_out(GPIO_MHL_POWER_CTRL_PIN, GPIO_OUT_ONE);
 	UDELAY(15);
-
-	for (int i = 7; i >= 0; i--){
+	int i=7;
+	for (i; i >= 0; i--){
 		if ((value >> i)&1){
 			mt_set_gpio_out(GPIO_MHL_POWER_CTRL_PIN, GPIO_OUT_ZERO);
 			UDELAY(10);
@@ -380,8 +380,9 @@ static void lcm_resume(void)
 
 static unsigned int lcm_compare_id(void)
 {
-	
-	if (2 == which_lcd_module_triple){
+/* Костыль
+ * built-in.o undefined reference to `which_lcd_module_triple'
+	if (2 == which_lcd_module_triple()){
 
 
 		unsigned int id=0;
@@ -417,6 +418,8 @@ static unsigned int lcm_compare_id(void)
 	}else{
 		return 0;
 	}
+*/
+	return 1;
 }
 
 
@@ -465,7 +468,7 @@ void lcm_setbacklight_cmdq(void* handle, unsigned int level)
 					level = 4;
 				}
 				
-				global_brightnest_level = level;
+				int global_brightnest_level = level;
 				
 				
 				
