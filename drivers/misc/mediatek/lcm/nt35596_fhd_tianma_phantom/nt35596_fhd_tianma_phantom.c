@@ -475,7 +475,7 @@ void lcm_setbacklight_cmdq(void* handle, unsigned int level)
 				
 				
 				if (level < 31){
-					KTD3116_Tianma_SendData(31 - level);
+					KTD3116_Tianma_SendData(64 - level*2);
 				}else{
 					if (tianma_first_vlue >= 31){
 						if (tianma_second_vlue >= 31){
