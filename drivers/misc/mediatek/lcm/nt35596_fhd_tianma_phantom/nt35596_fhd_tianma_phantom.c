@@ -301,7 +301,7 @@ static void lcm_get_params(LCM_PARAMS *params)
 	params->dsi.mode = BURST_VDO_MODE;
 	params->dsi.PLL_CLOCK = 475;
 	params->dsi.lcm_esd_check_table[0].cmd = 0xA;
-	params->dsi.lcm_esd_check_table[0].para_list[0] = 0x9Cu;
+	params->dsi.lcm_esd_check_table[0].para_list[0] = 0x9C;
 	params->type = LCM_TYPE_DSI;
 	params->dsi.data_format.format = LCM_DSI_FORMAT_RGB888;
 	params->dsi.PS = LCM_PACKED_PS_24BIT_RGB888;
