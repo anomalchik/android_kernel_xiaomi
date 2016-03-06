@@ -228,7 +228,6 @@ static int led_switch_breath_pmic(enum mt65xx_led_pmic pmic_type, struct nled_se
 	/* int time_index = 0; */
 	/* int duty = 0; */
 	LEDS_DEBUG("[LED]led_blink_pmic: pmic_type=%d\n", pmic_type);
-
 	if ((pmic_type != MT65XX_LED_PMIC_NLED_ISINK0 && pmic_type != MT65XX_LED_PMIC_NLED_ISINK1 &&
 	     pmic_type != MT65XX_LED_PMIC_NLED_ISINK2 && pmic_type != MT65XX_LED_PMIC_NLED_ISINK3)
 	    || led->nled_mode != NLED_BLINK) {
@@ -304,7 +303,6 @@ static int led_switch_breath_pmic(enum mt65xx_led_pmic pmic_type, struct nled_se
 		}
 	}
 	return 0;
-
 }
 #endif
 
