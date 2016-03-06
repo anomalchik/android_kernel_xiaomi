@@ -292,28 +292,28 @@ static void lcm_get_params(LCM_PARAMS *params)
 {
 	memset(params, 0, sizeof(LCM_PARAMS));
 
-	params->dsi.LANE_NUM = 4;
+	params->dsi.LANE_NUM = LCM_FOUR_LANE;
 	params->dsi.vertical_backporch = 4;
 	params->dsi.vertical_frontporch = 4;
 	params->dsi.horizontal_sync_active = 4;
 	params->physical_width = 68;
 	params->physical_height = 121;
-	params->dsi.mode = 3;
+	params->dsi.mode = BURST_VDO_MODE;
 	params->dsi.PLL_CLOCK = 475;
 	params->dsi.lcm_esd_check_table[0].cmd = 0xA;
 	params->dsi.lcm_esd_check_table[0].para_list[0] = 0x9Cu;
-	params->type = 2;
-	params->dsi.data_format.format = 2;
-	params->dsi.PS = 2;
+	params->type = LCM_TYPE_DSI;
+	params->dsi.data_format.format = LCM_DSI_FORMAT_RGB888;
+	params->dsi.PS = LCM_PACKED_PS_24BIT_RGB888;
 	params->dsi.vertical_sync_active = 2;
 	params->width = FRAME_WIDTH;
 	params->dsi.horizontal_active_pixel = FRAME_WIDTH;
 	params->height = FRAME_HEIGHT;
 	params->dsi.vertical_active_line = FRAME_HEIGHT;
 	params->dsi.switch_mode_enable = 0;
-	params->dsi.data_format.color_order = 0;
-	params->dsi.data_format.trans_seq = 0;
-	params->dsi.data_format.padding = 0;
+	params->dsi.data_format.color_order = LCM_COLOR_ORDER_RGB;
+	params->dsi.data_format.trans_seq = LCM_DSI_TRANS_SEQ_MSB_FIRST;
+	params->dsi.data_format.padding = LCM_DSI_PADDING_ON_LSB;
 	params->dsi.noncont_clock = 1;
 	params->dsi.esd_check_enable = 1;
 	params->dsi.customization_esd_check_enable = 1;
